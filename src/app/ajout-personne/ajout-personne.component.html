@@ -1,0 +1,40 @@
+
+
+
+<form #f="ngForm" (ngSubmit)="onSoumissionFormulaire(f)">
+    <div>
+        <label for="nom">* Nom</label>
+        <input type="text" name="nom" placeholder="Nom obligatoire"
+        ngModel #champNom="ngModel"
+        required minlength="3" maxlength="50" size="10">
+        <div *ngIf="champNom.invalid && champNom.touched && champNom.dirty" class="alert">
+            <div *ngIf="champNom.errors?.['required']">Le nom est obligatoire.</div>
+            <div *ngIf="champNom.errors?.['maxlength']">Le nom doit compter au plus 50 caractères.</div>
+            <div *ngIf="champNom.errors?.['minlength']">Le nom doit compter au moins 3 caractères.</div>
+        </div>
+
+        <!--ngModel pour récupérer la valeur du champ nom-->
+        <label for="prenom" >Prénom</label>
+        <input type="text" name="prenom" placeholder="Prenom obligatoire"
+         ngModel #champPrenom="ngModel"
+         minlength="3" maxlength="50">
+         <div *ngIf="champPrenom.invalid && champPrenom.touched && champPrenom.dirty" class="alert">
+            <div *ngIf="champPrenom.errors?.['required']">Le Prenom est obligatoire.</div>
+            <div *ngIf="champPrenom.errors?.['maxlength']">Le Prenom doit compter au plus 50 caractères.</div>
+            <div *ngIf="champPrenom.errors?.['minlength']">Le Prenom doit compter au moins 3 caractères.</div>
+        </div>
+
+        <label for="telephone" >Tel.</label>
+        <input type="text" name="telephone" ngModel placeholder="0x xx xx xx xx"
+        pattern="^0[1-9]([\s\-]?\d{2}){4}$" class="tel" #champTelephone="ngModel">
+        <div *ngIf="champTelephone.invalid && champTelephone.dirty" class="alert">
+        Téléphone 0x xx xx xx xx
+        </div>
+    </div>
+              
+    <div>
+        <!--   Var1
+            <button type="submit" *ngIf="f.valid">Ajouter</button> -->
+        <button type="submit" [style.visibility]="f.valid ? 'visible' : 'hiden'">Ajouter</button>
+    </div>
+</form>

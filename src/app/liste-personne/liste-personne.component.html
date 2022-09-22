@@ -1,0 +1,10 @@
+
+<!--Exercice-->
+<p>Il y a actuallement {{ personnesAAfficher.length }} personnes en base</p>
+
+
+<div *ngFor="let p of personnesAAfficher">
+    <!--La variable p contient l'objet Personne-->
+    <app-detail-personne [pers]="p" (suppressionPersonne)="onSuppressionPersonne()"> 
+    </app-detail-personne>
+</div>
